@@ -4,7 +4,7 @@ A quick description of the incoming changes.
 
 ### Related Issues
 
-- Closes ...
+Closes ...
 
 ### Type of Change
 
