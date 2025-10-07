@@ -15,6 +15,10 @@ A quick description of the incoming changes.
 
 ### Checklist
 
+PR Checks
+
+- [ ] Updated the title of this PR so Linear can find it.
+
 Project Checks
 
 - [ ] Ran `mix precommit` and all checks pass locally.
