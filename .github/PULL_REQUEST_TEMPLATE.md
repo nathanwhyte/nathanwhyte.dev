@@ -13,7 +13,7 @@ Closes ...
 - [ ] Bug fix
 - [ ] Refactoring
 - [ ] Documentation update
-- [ ] Other (please describe):
+- [ ] Other:
 
 ---
 
@@ -27,7 +27,7 @@ Project Checks
 
 - [ ] Ran `mix precommit` and all checks pass locally.
 - [ ] All existing tests pass (`mix test`).
-- [ ] Added new tests to cover new changes.
+- [ ] Added new tests to cover new changes, if any.
 - [ ] Checked for any extra files that aren't needed.
 
 Elixir/Phoenix Conventions
