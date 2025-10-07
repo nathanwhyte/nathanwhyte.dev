@@ -4,7 +4,7 @@ A quick description of the incoming changes.
 
 ### Related Issues
 
-- Closes ...
+Closes ...
 
 ### Type of Change
 
@@ -13,7 +13,7 @@ A quick description of the incoming changes.
 - [ ] Bug fix
 - [ ] Refactoring
 - [ ] Documentation update
-- [ ] Other (please describe):
+- [ ] Other:
 
 ---
 
@@ -27,7 +27,7 @@ Project Checks
 
 - [ ] Ran `mix precommit` and all checks pass locally.
 - [ ] All existing tests pass (`mix test`).
-- [ ] Added new tests to cover new changes.
+- [ ] Added new tests to cover new changes, if any.
 - [ ] Checked for any extra files that aren't needed.
 
 Elixir/Phoenix Conventions
