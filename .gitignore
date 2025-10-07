@@ -1,3 +1,5 @@
+### `mix phx.new` defaults ###
+
 # The directory Mix will write compiled artifacts to.
 /_build/
 
@@ -34,3 +36,18 @@ nathanwhyte-*.tar
 # In case you use Node.js/npm, you want to ignore these.
 npm-debug.log
 /assets/node_modules/
+
+### additions ###
+
+# tools
+**/.expert/
+
+# editor-sepecific
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+
+.cursor/
+
+# OS-specific
+**/.DS_Store
