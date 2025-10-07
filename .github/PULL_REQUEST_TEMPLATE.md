@@ -2,6 +2,10 @@
 
 A quick description of the incoming changes.
 
+### Related Issues
+
+- Closes ...
+
 ### Type of Change
 
 - [ ] New feature
