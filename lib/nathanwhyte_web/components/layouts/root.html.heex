@@ -21,6 +21,7 @@
             document.documentElement.setAttribute("data-theme", theme);
           }
         };
+
         if (!document.documentElement.hasAttribute("data-theme")) {
           setTheme(localStorage.getItem("phx:theme") || "system");
         }
