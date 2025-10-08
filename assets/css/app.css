@@ -23,7 +23,7 @@
   on Elixir colors. Build your own at: https://daisyui.com/theme-generator/ */
 @plugin "../vendor/daisyui-theme" {
   name: "dark";
-  default: true;
+  default: false;
   prefersdark: true;
   color-scheme: "dark";
   --color-base-100: oklch(0.095 0.015 316.3);
@@ -58,7 +58,7 @@
 
 @plugin "../vendor/daisyui-theme" {
   name: "light";
-  default: false;
+  default: true;
   prefersdark: false;
   color-scheme: "light";
   --color-base-100: oklch(0.978 0.008 319.4);
