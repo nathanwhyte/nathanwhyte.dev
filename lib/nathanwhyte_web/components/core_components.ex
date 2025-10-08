@@ -393,7 +393,8 @@ defmodule NathanwhyteWeb.CoreComponents do
   end
 
   @doc """
-  Renders a [Heroicon](https://heroicons.com).
+  Renders a [Heroicon](https://heroicons.com) or a custom icon from
+  the `priv/static/icons` directory.
 
   Heroicons come in three styles – outline, solid, and mini.
   By default, the outline style is used, but solid and mini may
@@ -402,18 +403,26 @@ defmodule NathanwhyteWeb.CoreComponents do
   You can customize the size and colors of the icons by setting
   width, height, and background color classes.
 
-  Icons are extracted from the `deps/heroicons` directory and bundled within
-  your compiled app.css by the plugin in `assets/vendor/heroicons.js`.
+  Icons are extracted from the `deps/heroicons` and `priv/static/icons`
+  directories and bundled within your compiled app.css by the plugins
+  in `assets/vendor/heroicons.js` and `assets/js/customIcons.js`.
 
   ## Examples
 
       <.icon name="hero-x-mark" />
       <.icon name="hero-arrow-path" class="ml-1 size-3 motion-safe:animate-spin" />
+      <.icon name="custom-icon-github" class="size-6" />
   """
   attr :name, :string, required: true
   attr :class, :string, default: "size-4"
 
   def icon(%{name: "hero-" <> _} = assigns) do
+    ~H"""
+    <span class={[@name, @class]} />
+    """
+  end
+
+  def icon(%{name: "custom-icon-" <> _} = assigns) do
     ~H"""
     <span class={[@name, @class]} />
     """
