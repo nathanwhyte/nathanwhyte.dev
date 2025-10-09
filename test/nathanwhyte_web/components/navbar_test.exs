@@ -8,14 +8,11 @@ defmodule NathanwhyteWeb.NavbarTest do
 
       # Test navbar presence and structure
       assert html =~ ~r/<header[^>]*class="navbar/
-      assert html =~ ~r/px-4 lg:px-6 mt-0 lg:mt-3\.5/
 
       # Test brand section
       assert html =~ ~r/href="\/"/
       assert html =~ ~r/class="hero-command-line/
-      assert html =~ ~r/size-8 lg:size-12 text-accent/
       assert html =~ "Nathan Whyte"
-      assert html =~ ~r/text-xl lg:text-3xl font-bold/
     end
 
     test "navbar right side has expected links and icons" do

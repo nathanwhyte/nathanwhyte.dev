@@ -4,8 +4,9 @@ defmodule NathanwhyteWeb.HomePageLiveTest do
 
   test "disconnected and connected render", %{conn: conn} do
     {:ok, page_live, disconnected_html} = live(conn, ~p"/")
-    assert disconnected_html =~ "Hello there!"
 
-    assert render(page_live) =~ "Hello there!"
+    assert disconnected_html =~ "Nathan Whyte"
+
+    assert render(page_live) =~ "Nathan Whyte"
   end
 end
