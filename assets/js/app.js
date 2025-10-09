@@ -25,13 +25,29 @@ import { LiveSocket } from "phoenix_live_view";
 import { hooks as colocatedHooks } from "phoenix-colocated/nathanwhyte";
 import topbar from "../vendor/topbar";
 
+/**
+ * @type {import("phoenix_live_view").HooksOptions}
+ */
+let Hooks = { ...colocatedHooks };
+
+// custom hooks
+Hooks.UserTime = {
+  mounted() {
+    const date_time = new Date();
+    this.pushEvent("report_user_time", {
+      unix_timestamp: date_time.getTime(),
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    });
+  },
+};
+
 const csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
-  hooks: { ...colocatedHooks },
+  hooks: Hooks,
 });
 
 // Show progress bar on live navigation and form submits
