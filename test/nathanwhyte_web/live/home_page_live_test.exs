@@ -1,4 +1,4 @@
-defmodule NathanwhyteWeb.PageLiveTest do
+defmodule NathanwhyteWeb.HomePageLiveTest do
   use NathanwhyteWeb.ConnCase, async: true
   import Phoenix.LiveViewTest
 
