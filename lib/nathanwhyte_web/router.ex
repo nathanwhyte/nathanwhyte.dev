@@ -17,7 +17,7 @@ defmodule NathanwhyteWeb.Router do
   scope "/", NathanwhyteWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", HomePageLive
   end
 
   # Other scopes may use custom stacks.

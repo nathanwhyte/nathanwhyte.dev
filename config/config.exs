@@ -63,3 +63,7 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+# Set up https://github.com/mathieuprog/tz as a timezone database for Elixir
+# See https://hexdocs.pm/elixir/DateTime.html#module-time-zone-database
+config :elixir, :time_zone_database, Tz.TimeZoneDatabase

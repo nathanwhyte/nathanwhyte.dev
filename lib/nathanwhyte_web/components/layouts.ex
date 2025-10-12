@@ -41,7 +41,7 @@ defmodule NathanwhyteWeb.Layouts do
           href="/"
           class="flex w-fit items-center gap-4 opacity-100 hover:opacity-75 transition-opacity duration-200"
         >
-          <.icon name="hero-command-line" class="size-8 lg:size-12 text-accent" />
+          <.icon name="hero-command-line" class="size-8 lg:size-12 text-primary" />
           <span class="text-xl lg:text-3xl font-bold">Nathan Whyte</span>
         </a>
       </div>
@@ -71,8 +71,8 @@ defmodule NathanwhyteWeb.Layouts do
       </div>
     </header>
 
-    <main class="px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl space-y-4">
+    <main class="px-4 lg:px-16">
+      <div class="mx-auto space-y-4">
         {render_slot(@inner_block)}
       </div>
     </main>
