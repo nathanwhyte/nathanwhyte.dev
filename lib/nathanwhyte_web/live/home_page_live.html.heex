@@ -1,6 +1,55 @@
 <Layouts.app flash={@flash}>
-  <h1 class="text-2xl font-bold">Hello there!</h1>
-  <div id="user-time" phx-hook="UserTime">
-    <p>{@greeting}</p>
+  <div class="py-16 flex flex-col gap-16">
+    <div class="flex flex-col gap-4">
+      <p id="user-time" phx-hook="UserTime" class="text-3xl pb-4 text-secondary font-bold">
+        {@greeting}
+      </p>
+
+      <h1 class="text-7xl font-semibold">
+        My name is <span class="text-7xl font-extrabold bg-linear-to-r text-transparent from-accent via-secondary to-error bg-clip-text">Nathan Whyte</span>,
+      </h1>
+
+      <p class="text-3xl">it's a pleasure to meet you. <span>👋🏻</span></p>
+    </div>
+
+    <section class="flex flex-row gap-16">
+      <div class="block max-w-48 text-center float-left">
+        <div class="avatar pb-2">
+          <div class="size-48 rounded-md">
+            <img src={~p"/images/nathan-whyte-headshot.png"} alt="Nathan Whyte" />
+          </div>
+        </div>
+
+        <div class="font-semibold">
+          <button class="btn btn-xs btn-ghost text-accent/50">
+            Can you do me a favor? <.icon name="hero-pencil-micro" class="size-3" />
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <p class="text-2xl">
+          I'm a <span class="font-semibold text-primary">Full Stack Software Engineer</span>
+          based in weird and wonderful Austin, Texas.
+        </p>
+
+        <%!-- summary --%>
+
+        <p class="text-sm">
+          I also <span class="font-semibold text-primary">really</span>,
+          <span class="italic text-accent font-extrabold">really</span>
+          like the color purple.
+          <span class="text-info ml-2 italic font-semibold">
+            Can't you tell?
+          </span>
+        </p>
+
+        <div class="flex justify-end">
+          <button class="btn btn-ghost w-fit btn-xs">
+            Read more <.icon name="hero-chevron-right-micro" class="size-3" />
+          </button>
+        </div>
+      </div>
+    </section>
   </div>
 </Layouts.app>

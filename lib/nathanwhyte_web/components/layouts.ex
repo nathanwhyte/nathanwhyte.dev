@@ -41,7 +41,7 @@ defmodule NathanwhyteWeb.Layouts do
           href="/"
           class="flex w-fit items-center gap-4 opacity-100 hover:opacity-75 transition-opacity duration-200"
         >
-          <.icon name="hero-command-line" class="size-8 lg:size-12 text-accent" />
+          <.icon name="hero-command-line" class="size-8 lg:size-12 text-primary" />
           <span class="text-xl lg:text-3xl font-bold">Nathan Whyte</span>
         </a>
       </div>
