@@ -1,0 +1,23 @@
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - 4000:4000
+    depends_on:
+      - db
+    environment:
+      SECRET_KEY_BASE: bp+2dSyIWML05cF5WBeRr2JikfXvCrgniPqgBxGiaQqHufcMY1PSwM9uRs7V3zAU
+      DATABASE_URL: ecto://postgres:postgres@db:5432/nathanwhyte_dev
+      PORT: 4000
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nathanwhyte_dev
+
