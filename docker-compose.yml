@@ -1,23 +1,31 @@
 services:
-  web:
+  phx:
     build: .
+    labels:
+      docker-rollout.pre-stop-hook: "touch /tmp/drain && sleep 10"
     restart: always
-    ports:
-      - 4000:4000
-    depends_on:
-      - db
     environment:
+      VIRTUAL_HOST: nathanwhyte.dev,www.nathanwhyte.dev
       SECRET_KEY_BASE: bp+2dSyIWML05cF5WBeRr2JikfXvCrgniPqgBxGiaQqHufcMY1PSwM9uRs7V3zAU
-      DATABASE_URL: ecto://postgres:postgres@db:5432/nathanwhyte_dev
+      DATABASE_URL: ecto://postgres:postgres@ecto:5432/nathanwhyte_dev
       PORT: 4000
+    expose:
+      - 4000
+    deploy:
+      replicas: 1
+    healthcheck:
+      test: test ! -f /tmp/drain
+      interval: 5s
+      retries: 1
+    depends_on:
+      - ecto
 
-  db:
-    image: postgres
+  ecto:
+    image: postgres:alpine
     restart: always
-    ports:
-      - 5432:5432
+    expose:
+      - 5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: nathanwhyte_dev
-
