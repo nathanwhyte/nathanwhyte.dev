@@ -27,3 +27,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: nathanwhyte_dev
+
+networks:
+  default:
+    external: true
+    name: proxy
