@@ -1,0 +1,160 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: phx-secret
+type: Opaque
+data:
+  SECRET_KEY_BASE: YnArMmRTeUlXTUwwNWNGNVdCZVJyMkppa2ZYdkNyZ25pUHFnQnhHaWFRcUh1ZmNNWTFQU3dNOXVSczdWM3pBVQ==
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phx
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0 # Never reduce capacity during deploy
+      maxSurge: 1 # Add one extra pod temporarily
+  selector:
+    matchLabels:
+      app: phx
+  template:
+    metadata:
+      labels:
+        app: phx
+    spec:
+      containers:
+        - name: phx
+          image: nathanwhyte/portfolio:latest
+          env:
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: phx-secret
+                  key: SECRET_KEY_BASE
+            - name: DATABASE_URL
+              value: "ecto://postgres:postgres@ecto:5432/nathanwhyte_dev"
+            - name: PORT
+              value: "4000"
+          ports:
+            - containerPort: 4000
+
+          # Phoenix prefers a readiness probe that ensures HTTP OK
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          # Optional liveness probe to restart deadlocked BEAM
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phx
+spec:
+  selector:
+    app: phx
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4000
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecto
+  template:
+    metadata:
+      labels:
+        app: ecto
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:alpine
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_DB
+              value: "nathanwhyte_dev"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: pgdata
+      volumes:
+        - name: pgdata
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecto
+spec:
+  selector:
+    app: ecto
+  ports:
+    - name: db
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP
+
+---
+# Cloudflare terminates TLS → Ingress is HTTP-only
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: phx-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: portfolio.nathanwhyte.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: phx
+                port:
+                  number: 80
+
+---
+# Optional but strongly recommended for graceful restarts & node maintenance
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: phx-pdb
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: phx
