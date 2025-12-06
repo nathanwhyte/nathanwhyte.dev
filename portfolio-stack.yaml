@@ -1,17 +1,81 @@
+### Cloudflare Tunnel ###
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflared-token
+  namespace: portfolio
+type: Opaque
+data:
+  TOKEN: ZXlKaElqb2laVGxtTVRkalpEQTJNekV4TTJObFlUbGpNbVUzTTJNek1ESTVOekV3TmpZaUxDSjBJam9pT0RJek1tTmhaR0l0T0RnNVlpMDBNall3TFRnMk5XRXRaVE5oTWpjMFpXUmtPREUxSWl3aWN5STZJbHBFVVRGTmJWbDRUbnBSZEZwRVNUTk9VekF3V1ZkRmVreFVaM3BaVkZGMFQwZGFhbGx0VG1wT2FsRjRUbFJDYVNKOQ==
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cloudflared
+  namespace: portfolio
+automountServiceAccountToken: false
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      serviceAccountName: cloudflared
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:latest
+          args:
+            - tunnel
+            - --no-autoupdate
+            - run
+            - --token-file=/etc/cloudflared/token
+          volumeMounts:
+            - name: tokenfile
+              mountPath: /etc/cloudflared
+              readOnly: true
+      volumes:
+        - name: tokenfile
+          secret:
+            secretName: cloudflared-token
+            items:
+              - key: TOKEN
+                path: token
+
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: phx-secret
+  namespace: portfolio
 type: Opaque
 data:
   SECRET_KEY_BASE: YnArMmRTeUlXTUwwNWNGNVdCZVJyMkppa2ZYdkNyZ25pUHFnQnhHaWFRcUh1ZmNNWTFQU3dNOXVSczdWM3pBVQ==
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: portfolio
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: phx
+  namespace: portfolio
 spec:
   replicas: 1
   strategy:
@@ -68,6 +132,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: phx
+  namespace: portfolio
 spec:
   selector:
     app: phx
@@ -82,6 +147,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ecto
+  namespace: portfolio
 spec:
   replicas: 1
   selector:
@@ -116,6 +182,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ecto
+  namespace: portfolio
 spec:
   selector:
     app: ecto
@@ -131,6 +198,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: phx-ingress
+  namespace: portfolio
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
@@ -153,6 +221,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: phx-pdb
+  namespace: portfolio
 spec:
   minAvailable: 1
   selector:
