@@ -1,9 +1,16 @@
+### DEV PORTFOLIO K8S STACK ###
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: portfolio
+
 ### Cloudflare Tunnel ###
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: cloudflared-token
+  name: portfolio-cloudflared-token
   namespace: portfolio
 type: Opaque
 data:
@@ -49,7 +56,7 @@ spec:
       volumes:
         - name: tokenfile
           secret:
-            secretName: cloudflared-token
+            secretName: portfolio-cloudflared-token
             items:
               - key: TOKEN
                 path: token
@@ -63,12 +70,6 @@ metadata:
 type: Opaque
 data:
   SECRET_KEY_BASE: YnArMmRTeUlXTUwwNWNGNVdCZVJyMkppa2ZYdkNyZ25pUHFnQnhHaWFRcUh1ZmNNWTFQU3dNOXVSczdWM3pBVQ==
-
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: portfolio
 
 ---
 apiVersion: apps/v1
