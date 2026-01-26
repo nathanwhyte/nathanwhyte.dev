@@ -103,3 +103,12 @@
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
 /* This file is for your main application CSS */
+
+@theme {
+  --color-purple-bg: oklch(9.5% 0.015 316.3);
+  --color-purple-fg: oklch(94.3% 0.021 316.5);
+}
+
+:root {
+  @apply bg-purple-bg text-purple-fg;
+}
