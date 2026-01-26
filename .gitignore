@@ -35,3 +35,16 @@ portfolio-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore IDE-specific files
+.vscode/
+.idea/
+.cursor/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore LSP-generated files
+.elixir_ls/
+.elixir-tools/
+.expert/
