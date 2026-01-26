@@ -48,3 +48,6 @@ Thumbs.db
 .elixir_ls/
 .elixir-tools/
 .expert/
+
+# Ignore environment variable files
+.env
