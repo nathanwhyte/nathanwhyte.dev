@@ -1,3 +1,128 @@
 <Layouts.app flash={@flash}>
-  <h1 class="text-5xl font-bold text-center">Hello there!</h1>
+  <div class="py-8 flex flex-col gap-16">
+    <section class="flex flex-col gap-4">
+      <h1 class="text-5xl pb-4 font-bold">
+        Hello!
+      </h1>
+
+      <h1 class="text-7xl font-semibold">
+        My name is <span class="font-extrabold bg-linear-to-r text-transparent from-violet-500 via-purple-400 to-fuchsia-500 bg-clip-text">Nathan Whyte</span>,
+      </h1>
+
+      <p class="text-3xl">it's a pleasure to meet you. <span>👋🏻</span></p>
+    </section>
+
+    <section class="flex flex-row gap-4 lg:gap-16">
+      <div class="block max-w-52 text-center float-left">
+        <div class="avatar">
+          <div class="size-52 rounded-md">
+            <img src={~p"/images/Headshot.png"} alt="Nathan Whyte" />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex text-xl flex-col gap-4 max-w-5xl">
+        <p class="text-2xl font-medium">
+          I'm a <span class="font-bold text-purple-400">Full Stack Software Engineer</span>
+          based in weird and wonderful <span class="text-amber-700 font-bold">Austin, Texas</span>. 🤘🏻
+        </p>
+
+        <p class="text-2xl">
+          I'm passionate about working all across the stack, from <span class="font-bold text-purple-300">creating smooth, user-friendly UIs</span>,
+          to <span class="font-bold text-violet-500">building performant backend APIs</span>,
+          all the way to <span class="font-bold text-fuchsia-400">deploying scalable services to the cloud</span>.
+        </p>
+
+        <p>
+          I love solving problems of all kinds, even the ones that keep me up late.
+        </p>
+
+        <p class="block">
+          <%!-- TODO: update the links, then to cards with links --%> Find me on
+          <span class="inline-flex items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
+            <a href="https://www.linkedin.com/in/nathanwhyte/" class="font-bold">
+              LinkedIn
+            </a>
+            <.icon name="hero-arrow-top-right-on-square-micro" class="" />
+          </span>
+          and
+          <span class="inline-flex items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
+            <a href="https://github.com/nathanwhyte" class="font-bold">GitHub</a>
+            <.icon name="hero-arrow-top-right-on-square-micro" class="" />
+          </span>
+        </p>
+      </div>
+    </section>
+
+    <section class="grid xl:grid-cols-2 auto-rows-auto gap-4 lg:gap-x-8 lg:gap-y-4">
+      <h1 class="text-5xl font-medium col-span-full">
+        Projects
+      </h1>
+
+      <div class="h-fit space-y-2">
+        <div class="rounded-md border border-violet-950 bg-violet-950/15 p-6 flex items-center gap-4">
+          <h2 class="text-2xl">
+            🐋 <span class="font-bold pl-2">Kubernetes Homelab</span>
+          </h2>
+
+          <div class="flex flex-row gap-4 ml-auto">
+            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
+              <a href="https://github.com/nathanwhyte" class="font-bold">Stats</a>
+              <.icon name="hero-arrow-down-micro" class="" />
+            </span>
+            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
+              <a href="https://github.com/nathanwhyte" class="font-bold">GitHub</a>
+              <.icon name="hero-arrow-top-right-on-square-micro" class="" />
+            </span>
+          </div>
+        </div>
+
+        <p class="px-2">Summary</p>
+      </div>
+
+      <div class="h-fit space-y-2">
+        <div class="rounded-md border border-violet-950 bg-violet-950/15 p-6 flex items-center gap-4">
+          <h2 class="text-2xl">
+            🪝 <span class="font-bold pl-2">Build Hook</span>
+          </h2>
+
+          <div class="flex flex-row gap-4 ml-auto">
+            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
+              <a href="https://github.com/nathanwhyte/build-hook" class="font-bold">GitHub</a>
+              <.icon name="hero-arrow-top-right-on-square-micro" class="" />
+            </span>
+          </div>
+        </div>
+
+        <p class="px-2">Summary</p>
+      </div>
+
+      <div class="h-fit space-y-2">
+        <div class="rounded-md border border-violet-950 bg-violet-950/15 p-6 flex items-center gap-4">
+          <h2 class="text-2xl">
+            🧠 <span class="font-bold pl-2">Personal Glossary</span>
+          </h2>
+
+          <div class="flex flex-row gap-4 ml-auto">
+            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
+              <a href="https://github.com/nathanwhyte" class="font-bold">GitHub</a>
+              <.icon name="hero-arrow-top-right-on-square-micro" class="" />
+            </span>
+          </div>
+        </div>
+
+        <p class="px-2">Summary</p>
+      </div>
+    </section>
+  </div>
+
+  <%!-- TODO: projects section --%>
+
+  <%!-- TODO: skills section --%>
+
+  <%!-- IDEA: PNG fridge with certificates on it --%>
+
+  <%!-- IDEA: "What's in My Homelab" section ("using", "experimenting", and "planning" categories) --%>
+  <%!-- IDEA: Kubernetes health summary --%>
+  <%!-- IDEA: Harbor registry stats --%>
 </Layouts.app>
