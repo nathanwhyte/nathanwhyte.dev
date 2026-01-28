@@ -80,10 +80,8 @@ defmodule PortfolioWeb.Layouts do
             target="_blank"
           />
 
-          <div>
-            <%!-- TODO: fix themes --%>
-            <.theme_toggle />
-          </div>
+          <%!-- TODO: fix themes --%>
+          <%!-- <.theme_toggle /> --%>
         </div>
       </div>
     </header>
