@@ -15,5 +15,5 @@ jobs:
         run: |
           curl -fsSL -X POST \
             -H "Authorization: Bearer ${BEARER_TOKEN}" \
-            https://build.nathanwhyte.dev/hook
+            https://build.nathanwhyte.dev/portfolio
 
