@@ -1,0 +1,186 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: portfolio
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cloudflared
+  namespace: portfolio
+automountServiceAccountToken: false
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      serviceAccountName: cloudflared
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:latest
+          args:
+            - tunnel
+            - --no-autoupdate
+            - run
+            - --token-file=/etc/cloudflared/token
+          volumeMounts:
+            - name: tokenfile
+              mountPath: /etc/cloudflared
+              readOnly: true
+      volumes:
+        - name: tokenfile
+          secret:
+            secretName: portfolio-cloudflared-token
+            items:
+              - key: TOKEN
+                path: token
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phx
+  namespace: portfolio
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0 # Never reduce capacity during deploy
+      maxSurge: 1 # Add one extra pod temporarily
+  selector:
+    matchLabels:
+      app: phx
+  template:
+    metadata:
+      labels:
+        app: phx
+    spec:
+      containers:
+        - name: phx
+          image: registry.nathanwhyte.dev/portfolio/portfolio:latest
+          env:
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: phx-secret
+                  key: SECRET_KEY_BASE
+            - name: DATABASE_URL
+              value: "ecto://postgres:postgres@ecto:5432/nathanwhyte_dev"
+            - name: PORT
+              value: "4000"
+          ports:
+            - containerPort: 4000
+
+          # Phoenix prefers a readiness probe that ensures HTTP OK
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          # Optional liveness probe to restart deadlocked BEAM
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phx
+  namespace: portfolio
+spec:
+  selector:
+    app: phx
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4000
+  type: ClusterIP
+
+---
+# Cloudflare terminates TLS → Ingress is HTTP-only
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: phx-ingress
+  namespace: portfolio
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: portfolio.nathanwhyte.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: phx
+                port:
+                  number: 80
+
+---
+# Optional but strongly recommended for graceful restarts & node maintenance
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: phx-pdb
+  namespace: portfolio
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: phx
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: hook-rollout-restart
+  namespace: portfolio
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "list", "watch", "patch", "update"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: hook-rollout-restart
+  namespace: portfolio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: hook-rollout-restart
+subjects:
+  - kind: ServiceAccount
+    name: buildx-builder
+    namespace: build
+
