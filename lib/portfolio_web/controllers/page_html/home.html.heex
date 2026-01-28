@@ -40,104 +40,108 @@
         <%!-- TODO: update the links, then to cards with links --%>
         <p class="block">
           Find me on
-          <a
+          <Layouts.link_button
             href="https://www.linkedin.com/in/nathan-whyte/"
+            label="LinkedIn"
+            icon="hero-arrow-top-right-on-square-micro"
             target="_blank"
-            class="font-bold rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5 inline-flex items-center gap-2"
-          >
-            LinkedIn <.icon name="hero-arrow-top-right-on-square-micro" class="" />
-          </a>
-          and
-          <a
+          /> and
+          <Layouts.link_button
             href="https://github.com/nathanwhyte"
+            label="GitHub"
+            icon="hero-arrow-top-right-on-square-micro"
             target="_blank"
-            class="font-bold inline-flex items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5"
-          >
-            GitHub <.icon name="hero-arrow-top-right-on-square-micro" class="" />
-          </a>
+          />
         </p>
       </div>
     </section>
 
-    <section class="grid xl:grid-cols-2 auto-rows-auto gap-4 lg:gap-x-8 lg:gap-y-4">
+    <section class="grid xl:grid-cols-2 auto-rows-min gap-4 lg:gap-4">
       <h1 class="text-5xl font-medium col-span-full">
         Projects
       </h1>
 
-      <div class="h-fit rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
-        <div class="flex items-center gap-4">
-          <h2 class="text-2xl">
-            🐋 <span class="font-bold pl-2">Kubernetes Homelab</span>
-          </h2>
+      <div class="h-full rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
+        <Layouts.project_card_header>
+          <:title>
+            <.icon name="hero-star-micro" class="size-8 text-fuchsia-500" /> 🐋
+            <span class="font-bold">Kubernetes Homelab</span>
+          </:title>
+          <:actions>
+            <Layouts.link_button href="/" label="Stats" icon="hero-arrow-down-micro" />
+            <Layouts.link_button
+              href="https://github.com/nathanwhyte/homelab"
+              label="GitHub"
+              icon="hero-arrow-top-right-on-square-micro"
+              target="_blank"
+            />
+          </:actions>
+        </Layouts.project_card_header>
 
-          <div class="flex flex-row gap-4 ml-auto">
-            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
-              <a
-                href="/"
-                class="font-bold"
-              >
-                Stats
-              </a>
-              <.icon name="hero-arrow-down-micro" class="" />
-            </span>
-            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
-              <a
-                href="https://github.com/nathanwhyte"
-                target="_blank"
-                class="font-bold"
-              >
-                GitHub
-              </a>
-              <.icon name="hero-arrow-top-right-on-square-micro" class="" />
-            </span>
-          </div>
-        </div>
-
-        <p class="">Summary</p>
+        <p>Self-hosted K3s Kubernetes cluster running on 4 Ubuntu Linux nodes.</p>
+        <p>
+          I host web applications, databases, data backups, an image registry, and much more from this cluster.
+        </p>
+        <p class="italic text-sm text-purple-fg/75">
+          It's like AWS, if AWS was way cheaper and hosted entirely from my office next to my cat's food bowl.
+        </p>
       </div>
 
-      <div class="h-fit rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
-        <div class="flex items-center gap-4">
-          <h2 class="text-2xl">
+      <div class="h-full rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
+        <Layouts.project_card_header>
+          <:title>
             🪝 <span class="font-bold pl-2">Build Hook</span>
-          </h2>
+          </:title>
+          <:actions>
+            <Layouts.link_button
+              href="https://github.com/nathanwhyte/build-hook"
+              label="GitHub"
+              icon="hero-arrow-top-right-on-square-micro"
+              target="_blank"
+            />
+          </:actions>
+        </Layouts.project_card_header>
 
-          <div class="flex flex-row gap-4 ml-auto">
-            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
-              <a
-                href="https://github.com/nathanwhyte/build-hook"
-                target="_blank"
-                class="font-bold"
-              >
-                GitHub
-              </a>
-              <.icon name="hero-arrow-top-right-on-square-micro" class="" />
-            </span>
-          </div>
-        </div>
-
-        <p class="">Summary</p>
+        <p>My replacement solution for building images entirely in GitHub Actions runners.</p>
+        <p>
+          Instead, I just call a endpoint hosted within my homelab cluster that pulls the latest code from GitHub and kicks off a build process using Docker's
+          <code class="px-1 py-0.5 border border-violet-800 bg-violet-800/25">buildx</code>
+          Kubernetes driver. After the image build finishes, the necessary services and deployments are retstarted.
+        </p>
+        <p>
+          Built using Rust's
+          <Layouts.inline_link_button
+            href="https://docs.rs/axum/latest/axum/"
+            label="Axum"
+            icon="hero-arrow-top-right-on-square-micro"
+            target="_blank"
+          /> web framework with configuration written in
+          <Layouts.inline_link_button
+            href="https://toml.io/en/"
+            label="TOML"
+            icon="hero-arrow-top-right-on-square-micro"
+            target="_blank"
+          /> .
+        </p>
+        <p class="italic text-sm text-purple-fg/75">
+          I'll be stashing my GitHub Actions savings for a rainy DevOps day (any time I build a Next.js image).
+        </p>
       </div>
 
       <div class="h-fit rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
-        <div class="flex items-center gap-4">
-          <h2 class="text-2xl">
+        <Layouts.project_card_header>
+          <:title>
             🧠 <span class="font-bold pl-2">Personal Glossary</span>
-          </h2>
-
-          <div class="flex flex-row gap-4 ml-auto">
-            <span class="inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5">
-              <a
-                href="https://github.com/nathanwhyte"
-                target="_blank"
-                class="font-bold"
-              >
-                GitHub
-              </a>
-              <.icon name="hero-arrow-top-right-on-square-micro" class="" />
-            </span>
-          </div>
-        </div>
+          </:title>
+          <:actions>
+            <Layouts.link_button
+              href="https://github.com/nathanwhyte"
+              label="GitHub"
+              icon="hero-arrow-top-right-on-square-micro"
+              target="_blank"
+            />
+          </:actions>
+        </Layouts.project_card_header>
 
         <p>Summary</p>
       </div>

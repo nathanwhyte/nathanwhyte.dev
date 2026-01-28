@@ -66,21 +66,19 @@ defmodule PortfolioWeb.Layouts do
 
       <div class="flex-none">
         <div class="flex gap-4 items-center">
-          <a
-            href="https://github.com/nathanwhyte"
-            target="_blank"
-            class="flex items-center gap-2 opacity-100 hover:opacity-75 transition-opacity duration-200"
-          >
-            GitHub
-          </a>
-
-          <a
+          <.link_button
             href="https://www.linkedin.com/in/nathan-whyte/"
+            label="LinkedIn"
+            icon="hero-arrow-top-right-on-square-micro"
             target="_blank"
-            class="flex items-center gap-2 opacity-100 hover:opacity-75 transition-opacity duration-200"
-          >
-            LinkedIn
-          </a>
+          />
+
+          <.link_button
+            href="https://github.com/nathanwhyte"
+            label="GitHub"
+            icon="hero-arrow-top-right-on-square-micro"
+            target="_blank"
+          />
 
           <div>
             <%!-- TODO: fix themes --%>
@@ -176,6 +174,72 @@ defmodule PortfolioWeb.Layouts do
       >
         <.icon name="hero-moon-micro" class="size-4 opacity-75 hover:opacity-100" />
       </button>
+    </div>
+    """
+  end
+
+  attr :href, :string, required: true
+  attr :label, :string, required: true
+  attr :icon, :string, default: nil
+  attr :target, :string, default: nil
+  attr :class, :string, default: nil
+  attr :icon_class, :string, default: nil
+
+  def link_button(assigns) do
+    ~H"""
+    <span class={[
+      "inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5",
+      @class
+    ]}>
+      <a href={@href} target={@target} class="font-bold">
+        {@label}
+      </a>
+      <%= if @icon do %>
+        <.icon name={@icon} class={@icon_class} />
+      <% end %>
+    </span>
+    """
+  end
+
+  attr :href, :string, required: true
+  attr :label, :string, required: true
+  attr :icon, :string, default: nil
+  attr :target, :string, default: nil
+  attr :class, :string, default: nil
+  attr :icon_class, :string, default: "size-3.5"
+
+  def inline_link_button(assigns) do
+    ~H"""
+    <span class={[
+      "inline-flex w-fit text-sm items-center gap-1 rounded-sm border border-violet-800 bg-violet-800/50 px-1 py-0.5",
+      @class
+    ]}>
+      <a href={@href} target={@target} class="font-semibold">
+        {@label}
+      </a>
+      <%= if @icon do %>
+        <.icon name={@icon} class={@icon_class} />
+      <% end %>
+    </span>
+    """
+  end
+
+  attr :actions_class, :string, default: nil
+  slot :title, required: true
+  slot :actions
+
+  def project_card_header(assigns) do
+    ~H"""
+    <div class="flex items-center gap-4">
+      <h2 class="text-2xl inline-flex items-center gap-4">
+        {render_slot(@title)}
+      </h2>
+
+      <%= if @actions != [] do %>
+        <div class={["flex gap-4 ml-auto", @actions_class]}>
+          {render_slot(@actions)}
+        </div>
+      <% end %>
     </div>
     """
   end
