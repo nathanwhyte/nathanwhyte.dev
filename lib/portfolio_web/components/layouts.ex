@@ -35,37 +35,37 @@ defmodule PortfolioWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 lg:px-6 mt-0 lg:mt-3.5">
-      <div class="flex-1 flex items-center gap-8">
+    <header class="navbar mt-0 px-4 lg:mt-3.5 lg:px-6">
+      <div class="flex flex-1 items-center gap-8">
         <a
           href="/"
-          class="flex w-fit items-center gap-4 opacity-100 hover:opacity-75 transition-opacity duration-200"
+          class="flex w-fit items-center gap-4 opacity-100 transition-opacity duration-200 hover:opacity-75"
         >
-          <.icon name="hero-command-line" class="size-8 lg:size-12 text-purple-400" />
-          <span class="text-xl lg:text-3xl font-bold">Nathan Whyte</span>
+          <.icon name="hero-command-line" class="size-8 text-purple-400 lg:size-12" />
+          <span class="text-xl font-bold lg:text-3xl">Nathan Whyte</span>
         </a>
         <a
           href="/"
-          class="opacity-100 hover:opacity-75 transition-opacity duration-200"
+          class="opacity-100 transition-opacity duration-200 hover:opacity-75"
         >
-          <span class="text-base lg:text-lg font-medium">Projects</span>
+          <span class="text-base font-medium lg:text-lg">Projects</span>
         </a>
         <a
           href="/"
-          class="opacity-100 hover:opacity-75 transition-opacity duration-200"
+          class="opacity-100 transition-opacity duration-200 hover:opacity-75"
         >
-          <span class="text-base lg:text-lg font-medium">Skills</span>
+          <span class="text-base font-medium lg:text-lg">Skills</span>
         </a>
         <a
           href="/"
-          class="opacity-100 hover:opacity-75 transition-opacity duration-200"
+          class="opacity-100 transition-opacity duration-200 hover:opacity-75"
         >
-          <span class="text-base lg:text-lg font-medium">What's in My Homelab</span>
+          <span class="text-base font-medium lg:text-lg">What's in My Homelab</span>
         </a>
       </div>
 
       <div class="flex-none">
-        <div class="flex gap-4 items-center">
+        <div class="flex items-center gap-4">
           <.link_button
             href="https://www.linkedin.com/in/nathan-whyte/"
             label="LinkedIn"
@@ -121,7 +121,7 @@ defmodule PortfolioWeb.Layouts do
         hidden
       >
         Attempting to reconnect
-        <.icon name="hero-arrow-path" class="ml-1 size-3 motion-safe:animate-spin" />
+        <.icon name="hero-arrow-path" class="size-3 ml-1 motion-safe:animate-spin" />
       </.flash>
 
       <.flash
@@ -133,7 +133,7 @@ defmodule PortfolioWeb.Layouts do
         hidden
       >
         Attempting to reconnect
-        <.icon name="hero-arrow-path" class="ml-1 size-3 motion-safe:animate-spin" />
+        <.icon name="hero-arrow-path" class="size-3 ml-1 motion-safe:animate-spin" />
       </.flash>
     </div>
     """
@@ -146,11 +146,11 @@ defmodule PortfolioWeb.Layouts do
   """
   def theme_toggle(assigns) do
     ~H"""
-    <div class="card relative flex flex-row items-center border-2 border-base-300 bg-base-300 rounded-full">
-      <div class="absolute w-1/3 h-full rounded-full border-1 border-base-200 bg-base-100 brightness-200 left-0 [[data-theme=light]_&]:left-1/3 [[data-theme=dark]_&]:left-2/3 transition-[left]" />
+    <div class="card border-base-300 bg-base-300 relative flex flex-row items-center rounded-full border-2">
+      <div class="border-1 border-base-200 bg-base-100 [[data-theme=light]_&]:left-1/3 [[data-theme=dark]_&]:left-2/3 transition-[left] absolute left-0 h-full w-1/3 rounded-full brightness-200" />
 
       <button
-        class="flex p-2 cursor-pointer w-1/3"
+        class="flex w-1/3 cursor-pointer p-2"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="system"
       >
@@ -158,7 +158,7 @@ defmodule PortfolioWeb.Layouts do
       </button>
 
       <button
-        class="flex p-2 cursor-pointer w-1/3"
+        class="flex w-1/3 cursor-pointer p-2"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="light"
       >
@@ -166,7 +166,7 @@ defmodule PortfolioWeb.Layouts do
       </button>
 
       <button
-        class="flex p-2 cursor-pointer w-1/3"
+        class="flex w-1/3 cursor-pointer p-2"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="dark"
       >
@@ -186,7 +186,7 @@ defmodule PortfolioWeb.Layouts do
   def link_button(assigns) do
     ~H"""
     <span class={[
-      "inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 bg-violet-800/50 px-2 py-0.5",
+      "bg-violet-800/50 inline-flex w-fit items-center gap-2 rounded-sm rounded-md border border-violet-800 px-2 py-0.5",
       @class
     ]}>
       <a href={@href} target={@target} class="font-bold">
@@ -209,7 +209,7 @@ defmodule PortfolioWeb.Layouts do
   def inline_link_button(assigns) do
     ~H"""
     <span class={[
-      "inline-flex w-fit text-sm items-center gap-1 rounded-sm border border-violet-800 bg-violet-800/50 px-1 py-0.5",
+      "bg-violet-800/50 inline-flex w-fit items-center gap-1 rounded-sm border border-violet-800 px-1 py-0.5 text-sm",
       @class
     ]}>
       <a href={@href} target={@target} class="font-semibold">
@@ -229,12 +229,12 @@ defmodule PortfolioWeb.Layouts do
   def project_card_header(assigns) do
     ~H"""
     <div class="flex items-center gap-4">
-      <h2 class="text-2xl inline-flex items-center gap-4">
+      <h2 class="inline-flex items-center gap-4 text-2xl">
         {render_slot(@title)}
       </h2>
 
       <%= if @actions != [] do %>
-        <div class={["flex gap-4 ml-auto", @actions_class]}>
+        <div class={["ml-auto flex gap-4", @actions_class]}>
           {render_slot(@actions)}
         </div>
       <% end %>

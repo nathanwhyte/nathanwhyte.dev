@@ -1,19 +1,19 @@
 <Layouts.app flash={@flash}>
-  <div class="py-8 flex flex-col gap-16">
+  <div class="flex flex-col gap-16 py-8">
     <section class="flex flex-col gap-4">
-      <h1 class="text-5xl pb-4 font-bold">
+      <h1 class="pb-4 text-5xl font-bold">
         Hello!
       </h1>
 
       <h1 class="text-7xl font-semibold">
-        My name is <span class="font-extrabold bg-linear-to-r text-transparent from-violet-500 via-purple-400 to-fuchsia-500 bg-clip-text">Nathan Whyte</span>,
+        My name is <span class="bg-linear-to-r from-violet-500 via-purple-400 to-fuchsia-500 bg-clip-text font-extrabold text-transparent">Nathan Whyte</span>,
       </h1>
 
       <p class="text-3xl">it's a pleasure to meet you. <span>👋🏻</span></p>
     </section>
 
     <section class="flex flex-row gap-4 lg:gap-16">
-      <div class="block max-w-52 text-center float-left">
+      <div class="max-w-52 float-left block text-center">
         <div class="avatar">
           <div class="size-52 rounded-md">
             <img src={~p"/images/Headshot.png"} alt="Nathan Whyte" />
@@ -21,10 +21,10 @@
         </div>
       </div>
 
-      <div class="flex text-xl flex-col gap-4 max-w-5xl">
+      <div class="flex max-w-5xl flex-col gap-4 text-xl">
         <p class="text-2xl font-medium">
           I'm a <span class="font-bold text-purple-400">Full Stack Software Engineer</span>
-          based in weird and wonderful <span class="text-amber-700 font-bold">Austin, Texas</span>. 🤘🏻
+          based in weird and wonderful <span class="font-bold text-amber-700">Austin, Texas</span>. 🤘🏻
         </p>
 
         <p class="text-2xl">
@@ -56,12 +56,12 @@
       </div>
     </section>
 
-    <section class="grid xl:grid-cols-2 auto-rows-min gap-4 lg:gap-4">
-      <h1 class="text-5xl font-medium col-span-full">
+    <section class="grid auto-rows-min gap-4 lg:gap-4 xl:grid-cols-2">
+      <h1 class="col-span-full text-5xl font-medium">
         Projects
       </h1>
 
-      <div class="h-full rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
+      <div class="bg-violet-950/15 h-full space-y-4 rounded-md border border-violet-950 p-6">
         <Layouts.project_card_header>
           <:title>
             <.icon name="hero-star-micro" class="size-8 text-fuchsia-500" /> 🐋
@@ -82,15 +82,15 @@
         <p>
           I host web applications, databases, data backups, an image registry, and much more from this cluster.
         </p>
-        <p class="italic text-sm text-purple-fg/75">
+        <p class="text-purple-fg/75 text-sm italic">
           It's like AWS, if AWS was way cheaper and hosted entirely from my office next to my cat's food bowl.
         </p>
       </div>
 
-      <div class="h-full rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
+      <div class="bg-violet-950/15 h-full space-y-4 rounded-md border border-violet-950 p-6">
         <Layouts.project_card_header>
           <:title>
-            🪝 <span class="font-bold pl-2">Build Hook</span>
+            🪝 <span class="pl-2 font-bold">Build Hook</span>
           </:title>
           <:actions>
             <Layouts.link_button
@@ -105,7 +105,7 @@
         <p>My replacement solution for building images entirely in GitHub Actions runners.</p>
         <p>
           Instead, I just call a endpoint hosted within my homelab cluster that pulls the latest code from GitHub and kicks off a build process using Docker's
-          <code class="px-1 py-0.5 border border-violet-800 bg-violet-800/25">buildx</code>
+          <code class="bg-violet-800/25 border border-violet-800 px-1 py-0.5">buildx</code>
           Kubernetes driver. After the image build finishes, the necessary services and deployments are retstarted.
         </p>
         <p>
@@ -123,15 +123,15 @@
             target="_blank"
           /> .
         </p>
-        <p class="italic text-sm text-purple-fg/75">
+        <p class="text-purple-fg/75 text-sm italic">
           I'll be stashing my GitHub Actions savings for a rainy DevOps day (any time I build a Next.js image).
         </p>
       </div>
 
-      <div class="h-fit rounded-md border border-violet-950 bg-violet-950/15 p-6 space-y-4">
+      <div class="bg-violet-950/15 h-fit space-y-4 rounded-md border border-violet-950 p-6">
         <Layouts.project_card_header>
           <:title>
-            🧠 <span class="font-bold pl-2">Personal Glossary</span>
+            🧠 <span class="pl-2 font-bold">Personal Glossary</span>
           </:title>
           <:actions>
             <Layouts.link_button
