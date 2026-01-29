@@ -191,6 +191,7 @@ defmodule PortfolioWeb.Layouts do
   attr :icon_class, :string, default: nil
   slot :logo
 
+  # TODO: add hover and transition effects
   def link_button(assigns) do
     ~H"""
     <span class={[
@@ -217,6 +218,7 @@ defmodule PortfolioWeb.Layouts do
   attr :class, :string, default: nil
   attr :icon_class, :string, default: "size-3.5"
 
+  # TODO: add hover and transition effects
   def inline_link_button(assigns) do
     ~H"""
     <span class={[
@@ -249,6 +251,20 @@ defmodule PortfolioWeb.Layouts do
           {render_slot(@actions)}
         </div>
       <% end %>
+    </div>
+    """
+  end
+
+  attr :label, :string, required: true
+  slot :logo, required: true
+
+  def skills_entry(assigns) do
+    ~H"""
+    <div class="bg-fuchsia-800/50 flex items-center gap-3 rounded-sm border border-fuchsia-800 px-3 py-2">
+      <div class="">
+        {render_slot(@logo)}
+      </div>
+      <span class="text-center text-sm font-medium">{@label}</span>
     </div>
     """
   end
