@@ -12,17 +12,17 @@ defmodule PortfolioWeb.Layouts do
   embed_templates "layouts/*"
 
   @doc """
-  Renders your app layout.
+    Renders your app layout.
 
-  This function is typically invoked from every template,
-  and it often contains your application menu, sidebar,
-  or similar.
+    This function is typically invoked from every template,
+    and it often contains your application menu, sidebar,
+    or similar.
 
-  ## Examples
+    ## Examples
 
-      <Layouts.app flash={@flash}>
-        <h1>Content</h1>
-      </Layouts.app>
+        <Layouts.app flash={@flash}>
+          <h1>Content</h1>
+        </Layouts.app>
 
   """
   attr :flash, :map, required: true, doc: "the map of flash messages"
@@ -36,36 +36,22 @@ defmodule PortfolioWeb.Layouts do
   def app(assigns) do
     ~H"""
     <header class="navbar mt-0 px-4 lg:mt-3.5 lg:px-6">
-      <div class="flex flex-1 items-center gap-8">
+      <div class="flex flex-1 items-center">
         <a
           href="/"
-          class="flex w-fit items-center gap-4 opacity-100 transition-opacity duration-200 hover:opacity-75"
+          class="bg-violet-800/50 flex w-fit items-center gap-4 rounded-md border border-violet-800 px-3 py-2 opacity-100 transition-opacity duration-200 hover:opacity-75"
         >
-          <.icon name="hero-command-line" class="size-8 text-purple-400 lg:size-12" />
-          <span class="text-xl font-bold lg:text-3xl">Nathan Whyte</span>
-        </a>
-        <a
-          href="/"
-          class="opacity-100 transition-opacity duration-200 hover:opacity-75"
-        >
-          <span class="text-base font-medium lg:text-lg">Projects</span>
-        </a>
-        <a
-          href="/"
-          class="opacity-100 transition-opacity duration-200 hover:opacity-75"
-        >
-          <span class="text-base font-medium lg:text-lg">Skills</span>
-        </a>
-        <a
-          href="/"
-          class="opacity-100 transition-opacity duration-200 hover:opacity-75"
-        >
-          <span class="text-base font-medium lg:text-lg">What's in My Homelab</span>
+          <.icon name="hero-command-line-micro" class="size-8 text-violet-500" />
+          <span class="text-xl font-bold lg:text-3xl">nathanwhyte.dev</span>
         </a>
       </div>
 
       <div class="flex-none">
         <div class="flex items-center gap-4">
+          <%!-- TODO: "click to copy" for email address --%>
+          <div class="flex items-center gap-2 text-lg font-medium opacity-100 transition-colors duration-200 hover:text-violet-400">
+            <.icon name="hero-envelope-micro" class="size-4" /> nathanwhyte35@gmail.com
+          </div>
           <.link_button
             href="https://www.linkedin.com/in/nathan-whyte/"
             label="LinkedIn"
