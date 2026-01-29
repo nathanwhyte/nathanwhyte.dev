@@ -72,7 +72,7 @@ defmodule PortfolioWeb.Layouts do
       </div>
     </header>
 
-    <main class="px-4 lg:px-16">
+    <main class="px-4 lg:px-6">
       <div class="mx-auto space-y-4">
         {render_slot(@inner_block)}
       </div>
