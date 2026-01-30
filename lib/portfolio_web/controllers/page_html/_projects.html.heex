@@ -4,10 +4,10 @@
   </h1>
 
   <div class="grid auto-rows-auto gap-4 lg:gap-4 xl:grid-cols-2">
-    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6">
+    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6 text-sm lg:text-base">
       <Layouts.project_card_header>
         <:title>
-          <.icon name="hero-star-micro" class="size-8 text-fuchsia-500" /> 🐋
+          <.icon name="hero-star-micro" class="size-8 hidden text-fuchsia-500 lg:block" /> 🐋
           <span class="font-bold">Kubernetes Homelab</span>
         </:title>
         <:actions>
@@ -87,13 +87,13 @@
       <p>For more details, of which there are many, check the GitHub repository.</p>
 
       <div class="flex grow items-end">
-        <p class="text-purple-fg/75 text-sm italic">
+        <p class="text-purple-fg/75 grow text-xs italic lg:text-sm">
           It's like AWS, if AWS was way cheaper and hosted entirely from my office next to my cat's food bowl
         </p>
       </div>
     </div>
 
-    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6">
+    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6 text-sm lg:text-base">
       <Layouts.project_card_header>
         <:title>
           🪝 <span class="font-bold">Build Hook</span>
@@ -115,21 +115,14 @@
       <ul class="list-disc pl-6">
         <li>Pulls the latest code from the configured GitHub repository</li>
         <li>
-          Kicks off a build process using Docker's
-          <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">
-            buildx
-          </span>
-          Kubernetes driver
+          Kicks off a build process using Docker's <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">buildx</span> Kubernetes driver
         </li>
         <li>Restarts the specified Kubernetes services after builds are finished</li>
       </ul>
 
       <p>
         The only thing that needs to run in a GitHub Action for any configured project is
-        <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">
-          curl
-        </span>
-        pointed at the corresponding Build Hook endpoint <i>(with a valid bearer token)</i>.
+        <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">curl</span> pointed at the corresponding Build Hook endpoint <i>(with a valid bearer token)</i>.
       </p>
 
       <p>
@@ -149,13 +142,13 @@
       </p>
 
       <div class="flex grow items-end">
-        <p class="text-purple-fg/75 grow text-sm italic">
+        <p class="text-purple-fg/75 grow text-xs italic lg:text-sm">
           I'll be stashing my GitHub Actions savings for a rainy DevOps day (any time I build a Next.js image)
         </p>
       </div>
     </div>
 
-    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6">
+    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6 text-sm lg:text-base">
       <Layouts.project_card_header>
         <:title>
           🧠 <span class="font-bold">Glossary</span>
@@ -201,16 +194,16 @@
       </p>
 
       <div class="flex grow items-end">
-        <p class="text-purple-fg/75 grow text-sm italic">
+        <p class="text-purple-fg/75 grow text-xs italic lg:text-sm">
           Google's worst nightmare, if it was still the 90s
         </p>
       </div>
     </div>
 
-    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6">
+    <div class="bg-violet-950/15 flex h-full flex-col space-y-4 rounded-md border border-violet-950 p-6 text-sm lg:text-base">
       <Layouts.project_card_header>
         <:title>
-          <.icon name="hero-star-micro" class="size-8 text-fuchsia-500" /> 📈
+          <.icon name="hero-star-micro" class="size-8 hidden text-fuchsia-500 lg:block" /> 📈
           <span class="font-bold">Equal Risk Portfolio Calculator</span>
         </:title>
         <:actions>
@@ -268,7 +261,7 @@
       </p>
 
       <div class="flex grow items-end">
-        <p class="text-purple-fg/75 grow text-sm italic">
+        <p class="text-purple-fg/75 grow text-xs italic lg:text-sm">
           "Money trees is the perfect place for shade, and that's just how I feel..."
         </p>
       </div>

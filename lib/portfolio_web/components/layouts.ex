@@ -35,7 +35,7 @@ defmodule PortfolioWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="navbar mt-0 px-4 lg:mt-3.5 lg:px-6">
+    <header class="navbar mt-2.5 px-4 lg:mt-3.5 lg:px-6">
       <div class="flex flex-1 items-center">
         <a
           href="/"
@@ -46,7 +46,7 @@ defmodule PortfolioWeb.Layouts do
         </a>
       </div>
 
-      <div class="flex-none">
+      <div class="hidden flex-none lg:block">
         <div class="flex items-center gap-4">
           <%!-- TODO: "click to copy" for email address --%>
           <div class="flex items-center gap-2 text-lg font-medium opacity-100 transition-colors duration-200 hover:text-violet-400">
@@ -86,9 +86,6 @@ defmodule PortfolioWeb.Layouts do
               </svg>
             </:logo>
           </.link_button>
-
-          <%!-- QUES: fix themes? would need to have alternate versions for a lot of the icons --%>
-          <%!-- <.theme_toggle /> --%>
         </div>
       </div>
     </header>
@@ -222,7 +219,7 @@ defmodule PortfolioWeb.Layouts do
   def inline_link_button(assigns) do
     ~H"""
     <span class={[
-      "bg-violet-800/50 inline-flex w-fit items-center gap-1 rounded-sm border border-violet-800 px-1 py-0.5 text-sm",
+      "bg-violet-800/50 inline-flex w-fit items-center gap-1 rounded-sm border border-violet-800 px-1 py-0.5 text-xs lg:text-sm",
       @class
     ]}>
       <a href={@href} target={@target} class="font-semibold">
@@ -241,13 +238,13 @@ defmodule PortfolioWeb.Layouts do
 
   def project_card_header(assigns) do
     ~H"""
-    <div class="flex items-center gap-4">
-      <h2 class="inline-flex items-center gap-4 text-2xl">
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-center">
+      <h2 class="inline-flex items-center gap-2 text-lg lg:text-2xl">
         {render_slot(@title)}
       </h2>
 
       <%= if @actions != [] do %>
-        <div class={["ml-auto flex gap-4", @actions_class]}>
+        <div class={["flex gap-4 lg:ml-auto", @actions_class]}>
           {render_slot(@actions)}
         </div>
       <% end %>
@@ -260,7 +257,7 @@ defmodule PortfolioWeb.Layouts do
 
   def skills_entry(assigns) do
     ~H"""
-    <div class="bg-fuchsia-800/50 flex items-center gap-3 h-10 rounded-sm border border-fuchsia-800 px-3 py-2">
+    <div class="bg-fuchsia-800/50 flex h-10 items-center gap-3 rounded-sm border border-fuchsia-800 px-3 py-2">
       <%= if @logo != [] do %>
         {render_slot(@logo)}
       <% end %>

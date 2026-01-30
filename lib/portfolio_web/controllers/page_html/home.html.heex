@@ -1,21 +1,19 @@
 <Layouts.app flash={@flash}>
-  <div class="flex flex-col gap-8 py-8">
-    <%!-- FIXME: remove after "skills" section is finished --%>
-    <%!-- <div class="hidden"> --%>
+  <div class="flex flex-col gap-8 py-4 lg:py-8">
     <section class="flex flex-col gap-4">
-      <h1 class="pb-4 text-5xl font-bold">
+      <h1 class="lg:pb-4 lg:text-5xl text-2xl font-bold">
         Hello!
       </h1>
 
-      <h1 class="text-7xl font-semibold">
-        My name is <span class="bg-linear-to-r from-violet-500 via-purple-400 to-fuchsia-500 bg-clip-text font-extrabold text-transparent">Nathan Whyte</span>,
+      <h1 class="lg:text-7xl text-5xl inline font-semibold">
+        My name is <span class="bg-linear-to-r from-violet-500 via-purple-400 to-fuchsia-500 inline-block lg:inline bg-clip-text font-extrabold text-transparent">Nathan Whyte</span>,
       </h1>
 
-      <p class="text-3xl">it's a pleasure to meet you. <span>👋🏻</span></p>
+      <p class="text-xl lg:text-3xl">it's a pleasure to meet you. <span>👋🏻</span></p>
     </section>
 
-    <section class="flex flex-row gap-4 p-8 lg:gap-16">
-      <div class="max-w-52 float-left block text-center">
+    <section class="flex flex-row gap-4 lg:p-8 lg:gap-16">
+      <div class="max-w-52 float-left hidden lg:block text-center">
         <div class="avatar">
           <div class="size-52 rounded-md">
             <img src={~p"/images/Headshot.png"} alt="Nathan Whyte" />
@@ -40,7 +38,7 @@
         </p>
 
         <%!-- TODO: update the links, then to cards with links --%>
-        <p class="block">
+        <p class="block text-sm font-medium">
           Find me on
           <Layouts.link_button
             href="https://www.linkedin.com/in/nathan-whyte/"
@@ -57,7 +55,6 @@
         </p>
       </div>
     </section>
-    <%!-- </div> --%>
 
     <._projects />
     <._skills />
