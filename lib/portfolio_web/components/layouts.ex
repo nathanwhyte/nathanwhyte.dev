@@ -87,7 +87,7 @@ defmodule PortfolioWeb.Layouts do
             </:logo>
           </.link_button>
 
-          <%!-- TODO: fix themes --%>
+          <%!-- QUES: fix themes? would need to have alternate versions for a lot of the icons --%>
           <%!-- <.theme_toggle /> --%>
         </div>
       </div>
@@ -260,7 +260,7 @@ defmodule PortfolioWeb.Layouts do
 
   def skills_entry(assigns) do
     ~H"""
-    <div class="bg-fuchsia-800/50 flex items-center gap-3 rounded-sm border border-fuchsia-800 px-3 py-2">
+    <div class="bg-fuchsia-800/50 flex items-center gap-3 h-10 rounded-sm border border-fuchsia-800 px-3 py-2">
       <%= if @logo != [] do %>
         {render_slot(@logo)}
       <% end %>
