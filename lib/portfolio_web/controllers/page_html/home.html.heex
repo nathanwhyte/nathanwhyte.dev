@@ -2,61 +2,61 @@
   <div class="flex flex-col gap-8 py-8">
     <%!-- FIXME: remove after "skills" section is finished --%>
     <%!-- <div class="hidden"> --%>
-      <section class="flex flex-col gap-4">
-        <h1 class="pb-4 text-5xl font-bold">
-          Hello!
-        </h1>
+    <section class="flex flex-col gap-4">
+      <h1 class="pb-4 text-5xl font-bold">
+        Hello!
+      </h1>
 
-        <h1 class="text-7xl font-semibold">
-          My name is <span class="bg-linear-to-r from-violet-500 via-purple-400 to-fuchsia-500 bg-clip-text font-extrabold text-transparent">Nathan Whyte</span>,
-        </h1>
+      <h1 class="text-7xl font-semibold">
+        My name is <span class="bg-linear-to-r from-violet-500 via-purple-400 to-fuchsia-500 bg-clip-text font-extrabold text-transparent">Nathan Whyte</span>,
+      </h1>
 
-        <p class="text-3xl">it's a pleasure to meet you. <span>👋🏻</span></p>
-      </section>
+      <p class="text-3xl">it's a pleasure to meet you. <span>👋🏻</span></p>
+    </section>
 
-      <section class="flex flex-row gap-4 p-8 lg:gap-16">
-        <div class="max-w-52 float-left block text-center">
-          <div class="avatar">
-            <div class="size-52 rounded-md">
-              <img src={~p"/images/Headshot.png"} alt="Nathan Whyte" />
-            </div>
+    <section class="flex flex-row gap-4 p-8 lg:gap-16">
+      <div class="max-w-52 float-left block text-center">
+        <div class="avatar">
+          <div class="size-52 rounded-md">
+            <img src={~p"/images/Headshot.png"} alt="Nathan Whyte" />
           </div>
         </div>
+      </div>
 
-        <div class="flex max-w-5xl flex-col gap-4 text-xl">
-          <p class="text-2xl font-medium">
-            I'm a <span class="font-bold text-purple-400">Full Stack Software Engineer</span>
-            based in weird and wonderful <span class="font-bold text-amber-700">Austin, Texas</span>. 🤘🏻
-          </p>
+      <div class="flex max-w-5xl flex-col gap-4 text-xl">
+        <p class="text-2xl font-medium">
+          I'm a <span class="font-bold text-purple-400">Full Stack Software Engineer</span>
+          based in weird and wonderful <span class="font-bold text-amber-700">Austin, Texas</span>. 🤘🏻
+        </p>
 
-          <p class="text-2xl">
-            I'm passionate about working all across the stack, from <span class="font-bold text-purple-300">creating smooth, user-friendly UIs</span>,
-            to <span class="font-bold text-violet-500">building performant backend APIs</span>,
-            all the way to <span class="font-bold text-fuchsia-400">deploying scalable services to the cloud</span>.
-          </p>
+        <p class="text-2xl">
+          I'm passionate about working all across the stack, from <span class="font-bold text-purple-300">creating smooth, user-friendly UIs</span>,
+          to <span class="font-bold text-violet-500">building performant backend APIs</span>,
+          all the way to <span class="font-bold text-fuchsia-400">deploying scalable services to the cloud</span>.
+        </p>
 
-          <p>
-            I love solving problems of all kinds, even the ones that keep me up late.
-          </p>
+        <p>
+          I love solving problems of all kinds, even the ones that keep me up late.
+        </p>
 
-          <%!-- TODO: update the links, then to cards with links --%>
-          <p class="block">
-            Find me on
-            <Layouts.link_button
-              href="https://www.linkedin.com/in/nathan-whyte/"
-              label="LinkedIn"
-              icon="hero-arrow-top-right-on-square-micro"
-              target="_blank"
-            /> and
-            <Layouts.link_button
-              href="https://github.com/nathanwhyte"
-              label="GitHub"
-              icon="hero-arrow-top-right-on-square-micro"
-              target="_blank"
-            />
-          </p>
-        </div>
-      </section>
+        <%!-- TODO: update the links, then to cards with links --%>
+        <p class="block">
+          Find me on
+          <Layouts.link_button
+            href="https://www.linkedin.com/in/nathan-whyte/"
+            label="LinkedIn"
+            icon="hero-arrow-top-right-on-square-micro"
+            target="_blank"
+          /> and
+          <Layouts.link_button
+            href="https://github.com/nathanwhyte"
+            label="GitHub"
+            icon="hero-arrow-top-right-on-square-micro"
+            target="_blank"
+          />
+        </p>
+      </div>
+    </section>
     <%!-- </div> --%>
 
     <._projects />

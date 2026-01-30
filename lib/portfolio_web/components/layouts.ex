@@ -256,14 +256,14 @@ defmodule PortfolioWeb.Layouts do
   end
 
   attr :label, :string, required: true
-  slot :logo, required: true
+  slot :logo, required: false
 
   def skills_entry(assigns) do
     ~H"""
     <div class="bg-fuchsia-800/50 flex items-center gap-3 rounded-sm border border-fuchsia-800 px-3 py-2">
-      <div class="">
+      <%= if @logo != [] do %>
         {render_slot(@logo)}
-      </div>
+      <% end %>
       <span class="text-center text-sm font-medium">{@label}</span>
     </div>
     """

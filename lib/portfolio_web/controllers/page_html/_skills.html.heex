@@ -4,7 +4,7 @@
   </h1>
 
   <div class="grid auto-rows-auto grid-cols-2 gap-4 lg:gap-4 xl:grid-cols-3">
-    <section class="bg-fuchsia-950/25 flex h-full flex-col gap-4 rounded-md border border-fuchsia-900 p-6">
+    <div class="bg-fuchsia-950/25 flex h-full flex-col gap-4 rounded-md border border-fuchsia-900 p-6">
       <Layouts.project_card_header>
         <:title>
           <span class="font-bold">Languages</span>
@@ -16,25 +16,25 @@
         <div class="flex flex-wrap gap-4">
           <Layouts.skills_entry label="JavaScript">
             <:logo>
-              <SkillsIcons.javascript />
+              <SkillsIcons.icon name="javascript" />
             </:logo>
           </Layouts.skills_entry>
 
           <Layouts.skills_entry label="TypeScript">
             <:logo>
-              <SkillsIcons.typescript />
+              <SkillsIcons.icon name="typescript" />
             </:logo>
           </Layouts.skills_entry>
 
           <Layouts.skills_entry label="Python">
             <:logo>
-              <SkillsIcons.python />
+              <SkillsIcons.icon name="python" />
             </:logo>
           </Layouts.skills_entry>
 
           <Layouts.skills_entry label="Java">
             <:logo>
-              <SkillsIcons.java />
+              <SkillsIcons.icon name="java" />
             </:logo>
           </Layouts.skills_entry>
         </div>
@@ -43,25 +43,104 @@
       <div class="space-y-2">
         <h2 class="font-semibold">Familiar</h2>
         <div class="flex flex-wrap gap-4">
+          <Layouts.skills_entry label="Rust">
+            <:logo>
+              <SkillsIcons.icon name="rust" />
+            </:logo>
+          </Layouts.skills_entry>
+
           <Layouts.skills_entry label="Shell Scripting">
             <:logo>
-              <SkillsIcons.bash />
+              <.icon name="hero-command-line-solid" class="size-6" />
             </:logo>
           </Layouts.skills_entry>
 
           <Layouts.skills_entry label="Ruby">
             <:logo>
-              <SkillsIcons.ruby />
+              <SkillsIcons.icon name="ruby" />
             </:logo>
           </Layouts.skills_entry>
 
           <Layouts.skills_entry label="Elixir">
             <:logo>
-              <SkillsIcons.elixir />
+              <SkillsIcons.icon name="elixir" />
             </:logo>
           </Layouts.skills_entry>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="bg-fuchsia-950/25 flex h-full flex-col gap-4 rounded-md border border-fuchsia-900 p-6">
+      <Layouts.project_card_header>
+        <:title>
+          <span class="font-bold">Frontend and Web</span>
+        </:title>
+      </Layouts.project_card_header>
+
+      <div class="flex flex-wrap gap-4">
+        <Layouts.skills_entry label="React">
+          <:logo>
+            <SkillsIcons.icon name="react" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="Next.js">
+          <:logo>
+            <SkillsIcons.icon name="nextjs" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="Tailwind CSS">
+          <:logo>
+            <SkillsIcons.icon name="tailwind" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="Zustand">
+          <:logo>
+            <SkillsIcons.icon name="zustand" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="TanStack Form">
+          <:logo>
+            <SkillsIcons.icon name="tanstack" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="HTML">
+          <:logo>
+            <SkillsIcons.icon name="html" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="CSS">
+          <:logo>
+            <SkillsIcons.icon name="css" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="WebSockets">
+          <:logo>
+            <SkillsIcons.icon name="websocket" />
+          </:logo>
+        </Layouts.skills_entry>
+
+        <Layouts.skills_entry label="SSR/SEO" />
+        <Layouts.skills_entry label="Accessibility" />
+      </div>
+    </div>
+
+    <div class="bg-fuchsia-950/25 flex h-full flex-col gap-4 rounded-md border border-fuchsia-900 p-6">
+      <Layouts.project_card_header>
+        <:title>
+          <span class="font-bold">Backend and Databases</span>
+        </:title>
+      </Layouts.project_card_header>
+
+      <div class="flex flex-wrap gap-4">
+
+      </div>
+    </div>
   </div>
 </section>
