@@ -53,7 +53,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phx
+  name: portfolio
   namespace: portfolio
 spec:
   replicas: 1
@@ -64,20 +64,20 @@ spec:
       maxSurge: 1 # Add one extra pod temporarily
   selector:
     matchLabels:
-      app: phx
+      app: portfolio
   template:
     metadata:
       labels:
-        app: phx
+        app: portfolio
     spec:
       containers:
-        - name: phx
+        - name: portfolio
           image: registry.nathanwhyte.dev/portfolio/portfolio:latest
           env:
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: phx-secret
+                  name: portfolio-secret
                   key: SECRET_KEY_BASE
             - name: DATABASE_URL
               value: "ecto://postgres:postgres@ecto:5432/nathanwhyte_dev"
@@ -110,11 +110,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: phx
+  name: portfolio
   namespace: portfolio
 spec:
   selector:
-    app: phx
+    app: portfolio
   ports:
     - name: http
       port: 80
@@ -126,7 +126,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: phx-ingress
+  name: portfolio-ingress
   namespace: portfolio
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
@@ -140,7 +140,27 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: phx
+                name: portfolio
+                port:
+                  number: 80
+    - host: www.nathanwhyte.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio
+                port:
+                  number: 80
+    - host: nathanwhyte.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio
                 port:
                   number: 80
 
@@ -149,14 +169,13 @@ spec:
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: phx-pdb
+  name: portfolio-pdb
   namespace: portfolio
 spec:
   minAvailable: 1
   selector:
     matchLabels:
-      app: phx
-
+      app: portfolio
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
