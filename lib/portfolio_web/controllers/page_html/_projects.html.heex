@@ -115,13 +115,21 @@
       <ul class="list-disc pl-6">
         <li>Pulls the latest code from the configured GitHub repository</li>
         <li>
-          Kicks off a build process using Docker's <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">buildx</span> Kubernetes driver
+          Kicks off a build process using Docker's
+          <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">
+            buildx
+          </span>
+          Kubernetes driver
         </li>
         <li>Restarts the specified Kubernetes services after builds are finished</li>
       </ul>
 
       <p>
-        The only thing that needs to run in a GitHub Action for any configured project is <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">curl</span> pointed at the corresponding Build Hook endpoint <i>(with a valid bearer token)</i>.
+        The only thing that needs to run in a GitHub Action for any configured project is
+        <span class="bg-violet-800/25 font-mono rounded-sm border border-violet-800 px-1 py-0.5 text-sm">
+          curl
+        </span>
+        pointed at the corresponding Build Hook endpoint <i>(with a valid bearer token)</i>.
       </p>
 
       <p>

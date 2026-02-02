@@ -56,6 +56,7 @@ defmodule Portfolio.MixProject do
        app: false,
        compile: false,
        depth: 1},
+      {:phoenix_seo, "~> 0.1.11"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
