@@ -28,6 +28,7 @@ defmodule PortfolioWeb.CoreComponents do
   """
   use Phoenix.Component
 
+  alias Phoenix.HTML.Form, as: HTMLForm
   alias Phoenix.LiveView.JS
 
   @doc """
@@ -180,7 +181,7 @@ defmodule PortfolioWeb.CoreComponents do
   def input(%{type: "checkbox"} = assigns) do
     assigns =
       assign_new(assigns, :checked, fn ->
-        Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
+        HTMLForm.normalize_value("checkbox", assigns[:value])
       end)
 
     ~H"""
@@ -217,7 +218,7 @@ defmodule PortfolioWeb.CoreComponents do
           {@rest}
         >
           <option :if={@prompt} value="">{@prompt}</option>
-          {Phoenix.HTML.Form.options_for_select(@options, @value)}
+          {HTMLForm.options_for_select(@options, @value)}
         </select>
       </label>
       <.error :for={msg <- @errors}>{msg}</.error>
@@ -235,7 +236,7 @@ defmodule PortfolioWeb.CoreComponents do
           name={@name}
           class={[@class || "textarea w-full", @errors != [] && (@error_class || "textarea-error")]}
           {@rest}
-        >{Phoenix.HTML.Form.normalize_value("textarea", @value)}</textarea>
+        >{HTMLForm.normalize_value("textarea", @value)}</textarea>
       </label>
       <.error :for={msg <- @errors}>{msg}</.error>
     </div>
@@ -252,7 +253,7 @@ defmodule PortfolioWeb.CoreComponents do
           type={@type}
           name={@name}
           id={@id}
-          value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+          value={HTMLForm.normalize_value(@type, @value)}
           class={[@class || "input w-full", @errors != [] && (@error_class || "input-error")]}
           {@rest}
         />

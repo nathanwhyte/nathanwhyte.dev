@@ -1,4 +1,5 @@
 defmodule PortfolioWeb.SEO do
+  @moduledoc "SEO metadata configuration for the portfolio site."
   use PortfolioWeb, :verified_routes
 
   use SEO,
