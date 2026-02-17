@@ -11,7 +11,8 @@ defmodule Portfolio.MixProject do
       aliases: aliases(),
       deps: deps(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
-      listeners: [Phoenix.CodeReloader]
+      listeners: [Phoenix.CodeReloader],
+      usage_rules: usage_rules()
     ]
   end
 
@@ -40,6 +41,8 @@ defmodule Portfolio.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:usage_rules, "~> 1.0", only: [:dev]},
+      {:igniter, "~> 0.6", only: [:dev]},
       {:phoenix, "~> 1.8.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -49,6 +52,7 @@ defmodule Portfolio.MixProject do
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:tailwind_formatter, "~> 0.4.2", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.2.0",
@@ -82,6 +86,28 @@ defmodule Portfolio.MixProject do
         "phx.digest"
       ],
       precommit: ["compile --warning-as-errors", "deps.unlock --unused", "format", "test"]
+    ]
+  end
+
+  defp usage_rules do
+    [
+      # The file to write usage rules into (required for usage_rules syncing)
+      file: "AGENTS.md",
+
+      # Which packages to include (required for usage_rules syncing)
+      # :all discovers every dependency with a usage-rules.md and inlines them
+      usage_rules: :all
+      # Or list specific packages and sub-rules:
+      # usage_rules: [
+      #   :ash,                         # inlined (default)
+      #   ~r/^ash_/,                    # regex match (inlined)
+      #   "phoenix:ecto",               # specific sub-rule (inlined)
+      #   {:req, link: :at},            # linked with @-style
+      #   {:ecto, link: :markdown},     # linked with markdown-style
+      #   {~r/^phoenix_/, link: :markdown}, # regex match (linked)
+      #   :elixir,                      # built-in Elixir rules
+      #   :otp,                         # built-in OTP rules
+      # ],
     ]
   end
 end
