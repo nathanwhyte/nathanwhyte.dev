@@ -74,6 +74,26 @@ spec:
         - name: portfolio
           image: registry.nathanwhyte.dev/portfolio/portfolio:latest
           env:
+            # Skip distributed Erlang entirely, so epmd is never spawned.
+            #
+            # This app does not cluster: replicas is 1, there is no libcluster /
+            # horde / swarm / syn, and DNS_CLUSTER_QUERY is unset, so the
+            # {DNSCluster, query: ... || :ignore} child in
+            # lib/portfolio/application.ex starts in no-op mode. epmd was
+            # therefore starting for nothing — and because the release's PID 1
+            # never reaps, its exited children accumulated as <defunct> entries
+            # in the node process table, which the k3s nodes' MOTD reports on
+            # every SSH login.
+            #
+            # Preferred over `-start_epmd false`, which leaves the VM trying to
+            # bring up distribution against a name server that isn't there.
+            #
+            # Cost: `bin/portfolio remote` and `bin/portfolio rpc` stop working,
+            # since both need distribution. `bin/portfolio eval` still works (it
+            # starts a fresh non-distributed node), as does `kubectl exec` for
+            # non-IEx use. Reversible with a one-line redeploy.
+            - name: RELEASE_DISTRIBUTION
+              value: none
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
@@ -202,4 +222,3 @@ subjects:
   - kind: ServiceAccount
     name: buildx-builder
     namespace: build
-
